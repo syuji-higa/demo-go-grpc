@@ -1,0 +1,30 @@
+syntax = "proto3";
+
+// パッケージ名を定義
+package sample;
+
+// Golang のパッケージ名を定義
+option go_package = "./sample";
+
+// Java のパッケージ名を定義
+option java_package = "com.sample";
+option java_multiple_files = true;
+
+// サービスのインターフェースを定義
+service Sample {
+  // 関数を定義（受け取った数値を自乗する）
+  //   ストリーミングにしたい場合は
+  //   引数または戻り値に stream を追加
+  rpc Square (SquareRequest) returns (SquareResponse) {}
+}
+
+// Square のリクエストを定義（メッセージ型）
+message SquareRequest {
+  // 数値はタグナンバー
+  double value = 1;
+}
+
+// Square のレスポンスを定義（メッセージ型）
+message SquareResponse {
+  double result = 1;  // 数値はタグナンバー
+}
